@@ -1,4 +1,3 @@
-# Ignorer les pycaches (en théorie...)
-/__pycache__/*
-
+# Ignorer le dossier pycache entier (en théorie...)
+__pycache__/*
 Results.html
