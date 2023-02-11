@@ -6,7 +6,7 @@
 import re
 from Bio import Entrez
 
-from main import gene_list_generator
+from GeneDictGenerator import gene_dict_generator
 
 Entrez.email = "camille.godi@univ-rouen.fr"
 
@@ -16,7 +16,7 @@ def ncbi(filePath:str):
     """
     MODULE POUR L'EXPORT DE DONNEES DEPUIS NCBI
 
-    Données pour chaque gène:
+    Données pour chaque gène (dico):
     - ncbiFullName           -> Nom commun complet du gène
     - ncbiGeneId             -> ID NCBI du gène
     - ncbiTranscriptAccess   -> Access number des transcrits du gène (via RefSeq)
@@ -28,7 +28,7 @@ def ncbi(filePath:str):
     """
 
     # création liste gène + espèce
-    genesList = gene_list_generator(filePath)
+    genesList = gene_dict_generator(filePath)
 
     # Data Ensembl pour chaque gène
     ncbiData = {}

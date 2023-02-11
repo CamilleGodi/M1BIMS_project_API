@@ -3,25 +3,9 @@
 
 ######################################################################
 
-# fonction de création dico liste gène + espèce (clé : "geneSymbol,organism")
-
-def gene_list_generator(filePath:str): 
-    """
-    GENERATEUR DE LISTE GENE + ESPECE ASSOCIEE DEPUIS FICHIER EXTERNE
-    Sortie : genesList["geneAndOrga"] = ("geneSymbol","organism")
-    """
-    genesList = {} 
-    with open(filePath,"r") as file :
-        for line in file.readlines():
-            name = line.rstrip()
-            infos = line.rstrip().split(",") #rstrip enlève métacaractères, split sépare en une liste selon le séparateur donnée
-            genesList[name] = (infos[0] , infos[1])
-    return genesList
-
-######################################################################
-######################################################################
-
 file = "GeneSymbols.txt"
+
+from GeneDictGenerator import gene_dict_generator
 
 from Ensembl import ensembl
 from NCBI import ncbi
@@ -30,7 +14,7 @@ from NCBI import ncbi
 
 def table_Generator(filePath:str) :
     # création liste gène + espèce
-    genesList = gene_list_generator(filePath)
+    genesList = gene_dict_generator(filePath)
 
     ##################################################################
 
@@ -41,6 +25,8 @@ def table_Generator(filePath:str) :
     ### RESULTATS MODULE NCBI
     print("### Fetching NCBI data...")
     resNcbi = ncbi(filePath)
+
+    ### RESULTATS MODULE ...
 
     ##################################################################
 

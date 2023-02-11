@@ -5,7 +5,7 @@
 
 import requests
 
-from main import gene_list_generator
+from GeneDictGenerator import gene_dict_generator
 
 server = "https://rest.ensembl.org"
 
@@ -14,7 +14,7 @@ server = "https://rest.ensembl.org"
 def ensembl(filePath:str):
     """
     MODULE POUR L'EXPORT DE DONNEES DEPUIS ENSEMBL
-    Données pour chaque gène:
+    Données pour chaque gène (dico):
     - ensGeneId         -> ID Ensembl du gène
     - ensUrlBrowser     -> lien vers le gène dans le Ensembl Genome Browser
     - ensTranscriptId   -> IDs des transcrits du gène
@@ -28,7 +28,7 @@ def ensembl(filePath:str):
     """
 
     # création liste gène + espèce
-    genesList = gene_list_generator(filePath)
+    genesList = gene_dict_generator(filePath)
 
     # préfixe URL selon divisions
     divisionUrl = {
@@ -116,10 +116,6 @@ def ensembl(filePath:str):
 
 ######################################################################
 
-#TEST fonction liste gènes et organismes associés:
-#for k,v in gene_list_generator("GeneSymbols.txt").items():
-#    print(k,v)
-
 #TEST module individuel:
-for k,v in ensembl("GeneSymbols.txt").items():
-    print(k,v)
+#for k,v in ensembl("GeneSymbols.txt").items():
+#    print(k,v)
