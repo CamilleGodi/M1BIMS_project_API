@@ -5,7 +5,8 @@
 
 import re
 from Bio import Entrez
-from Ensembl import gene_list_generator
+
+from main import gene_list_generator
 
 Entrez.email = "camille.godi@univ-rouen.fr"
 

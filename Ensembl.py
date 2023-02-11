@@ -5,24 +5,9 @@
 
 import requests
 
+from main import gene_list_generator
+
 server = "https://rest.ensembl.org"
-
-######################################################################
-
-# focntion de création dico liste gène + espèce (clé : "geneSymbol,organism")
-
-def gene_list_generator(filePath:str): 
-    """
-    GENERATEUR DE LISTE GENE + ESPECE ASSOCIEE DEPUIS FICHIER EXTERNE
-    Sortie : genesList["geneAndOrga"] = ("geneSymbol","organism")
-    """
-    genesList = {} 
-    with open(filePath,"r") as file :
-        for line in file.readlines():
-            name = line.rstrip()
-            infos = line.rstrip().split(",") #rstrip enlève métacaractères, split sépare en une liste selon le séparateur donnée
-            genesList[name] = (infos[0] , infos[1])
-    return genesList
 
 ######################################################################
 
@@ -136,5 +121,5 @@ def ensembl(filePath:str):
 #    print(k,v)
 
 #TEST module individuel:
-#for k,v in ensembl("GeneSymbols.txt").items():
-#    print(k,v)
+for k,v in ensembl("GeneSymbols.txt").items():
+    print(k,v)
