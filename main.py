@@ -3,13 +3,6 @@
 
 ######################################################################
 
-file = "GeneSymbols.txt"
-
-from Ensembl import ensembl
-from NCBI import ncbi
-
-######################################################################
-
 # fonction de création dico liste gène + espèce (clé : "geneSymbol,organism")
 
 def gene_list_generator(filePath:str): 
@@ -26,8 +19,16 @@ def gene_list_generator(filePath:str):
     return genesList
 
 ######################################################################
+######################################################################
 
-def main(filePath:str) :
+file = "GeneSymbols.txt"
+
+from Ensembl import ensembl
+from NCBI import ncbi
+
+######################################################################
+
+def table_Generator(filePath:str) :
     # création liste gène + espèce
     genesList = gene_list_generator(filePath)
 
@@ -103,4 +104,4 @@ def main(filePath:str) :
         # fin tableau
         outputHtml.write("</table>")
 
-main(file)
+table_Generator(file)
