@@ -12,7 +12,7 @@ from NCBI import ncbi
 
 ######################################################################
 
-def table_Generator(filePath:str) :
+def table_generator(filePath:str) :
     # création liste gène + espèce
     genesList = gene_dict_generator(filePath)
 
@@ -90,4 +90,4 @@ def table_Generator(filePath:str) :
         # fin tableau
         outputHtml.write("</table>")
 
-table_Generator(file)
+table_generator(file)

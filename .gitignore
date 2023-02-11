@@ -1,2 +1,2 @@
 # Ignorer les pycaches (en théorie...)
-*.pyc
+__pycache__/

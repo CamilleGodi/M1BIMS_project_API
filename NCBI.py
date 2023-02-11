@@ -30,7 +30,7 @@ def ncbi(filePath:str):
     # création liste gène + espèce
     genesList = gene_dict_generator(filePath)
 
-    # Data Ensembl pour chaque gène
+    # Data NCBI pour chaque gène
     ncbiData = {}
 
     for geneAndOrga in genesList.keys():
