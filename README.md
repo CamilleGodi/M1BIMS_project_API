@@ -1,2 +1,5 @@
 # M1BIMS_project_API
-Scripts creating an interactive table by using API to fetch information from several databases (Ensembl, NCBI, UniProt...)
+Script créant un tableau intéractif d'annotation de gènes depuis différentes bases de données en ligne (Ensembl, NCBI, UniProt...)
+
+### Pour lancer le programme:
+```python3 main.py```
