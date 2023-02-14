@@ -11,6 +11,7 @@ from Ensembl import ensembl
 from NCBI import ncbi
 from uniprot import uniprot
 from PDB import pdb
+from Pfam import pfam
 
 ######################################################################
 
