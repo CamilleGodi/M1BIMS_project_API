@@ -10,6 +10,7 @@ from GeneDictGenerator import gene_dict_generator
 from Ensembl import ensembl
 from NCBI import ncbi
 from uniprot import uniprot
+from PDB import pdb
 
 ######################################################################
 
@@ -30,6 +31,14 @@ def table_generator(filePath:str) :
     ### RESULTATS MODULE UNIPROT
     print("### Fetching Uniprot data...")
     resUniprot = uniprot(filePath)
+
+    ### RESULTATS MODULE PDB
+    print("### Fetching Uniprot data...")
+    resPDB = pdb(resUniprot)
+
+    ### RESULTATS MODULE PFAM
+    print("### Fetching Pfam data...")
+    resPfam = pfam(resUniprot)
 
     ##################################################################
 

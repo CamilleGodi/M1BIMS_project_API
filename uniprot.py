@@ -47,9 +47,9 @@ def uniprot(filePath:str):
 
         # Récupération des valeurs
 
-        id = decoded["results"][0]["primaryAccession"]
+        id = decoded["results"][0]["primaryAccession"] # TODO récupérer la liste complète des ID correspondants
         try:
-            name = decoded["results"][0]["proteinDescription"]["recommendedName"]["fullName"]["value"]
+            name = decoded["results"][0]["proteinDescription"]["recommendedName"]["fullName"]["value"] # TODO récupérer plusieurs noms ?
         except KeyError:
             name = "No data" # TODO a ameliorer
         
