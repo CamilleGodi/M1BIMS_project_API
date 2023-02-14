@@ -9,6 +9,7 @@ from GeneDictGenerator import gene_dict_generator
 
 from Ensembl import ensembl
 from NCBI import ncbi
+from uniprot import uniprot
 
 ######################################################################
 
@@ -26,7 +27,9 @@ def table_generator(filePath:str) :
     print("### Fetching NCBI data...")
     resNcbi = ncbi(filePath)
 
-    ### RESULTATS MODULE ...
+    ### RESULTATS MODULE UNIPROT
+    print("### Fetching Uniprot data...")
+    resUniprot = uniprot(filePath)
 
     ##################################################################
 

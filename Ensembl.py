@@ -13,7 +13,7 @@ server = "https://rest.ensembl.org"
 
 def ensembl(filePath:str):
     """
-    MODULE POUR L'EXPORT DE DONNEES DEPUIS ENSEMBL
+    MODULE POUR L'IMPORT DE DONNEES DEPUIS ENSEMBL
     Données pour chaque gène (dico):
     - ensGeneId         -> ID Ensembl du gène
     - ensUrlBrowser     -> lien vers le gène dans le Ensembl Genome Browser

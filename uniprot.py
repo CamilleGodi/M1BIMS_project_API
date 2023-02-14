@@ -1,75 +1,68 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+#-*- coding: utf8 -*-
 
-import argparse
-import pandas as pd
-import re
+######################################################################
+
 import requests
-import sys
 
-# rettype = uilist pour ne pas avoir à itérer comme un connard
+from Bio import Entrez
+from GeneDictGenerator import gene_dict_generator
 
+Entrez.email = "erwan.quignon@univ-rouen.fr"
 
-def create_dataframe(file):
-    data = {"gs": [], "orga": []}
+######################################################################
 
-    with open(file, "r") as f:
-        for line in f.readlines():
-            data["gs"].append(line.strip().split(",")[0])
-            data["orga"].append(line.strip().split(",")[1])
+def uniprot(filePath:str):
+    """
+    MODULE POUR L'IMPORT DE DONNEES DEPUIS UNIPROT
 
-    df = pd.DataFrame(data)
+    Données pour chaque gène (dico):
+    - uniprotID             -> ID Uniprot du gène
+    - uniprotName           -> Nom du gène dans Uniprot
 
-    return df
+    Exemple d'accès au Uniprot Gene ID pour un gène *A* dans organisme 1 *orga_1* 
+    (à partir d'un fichier situé en *filePath*):
+    > res = uniprot(filePath) ; res["A,orga1"]['uniprotID']
+    """
 
+    # Création liste gène + espèce
+    genesList = gene_dict_generator(filePath)
 
-def get_uniprot_id(df):
-    ids = [
-        ['organism_name:"' + y + '"', "gene_exact:" + x]
-        for x, y in zip(df["gs"], df["orga"])
-    ]
-    uni_id = []
-    uni_name = []
+    # Data UNIPROT pour chaque gène
+    uniprotData = {}
 
-    for id in ids:
-        url = f"https://rest.uniprot.org/uniprotkb/search?query={id[0]}+{id[1]}&format=json"
+    for geneAndOrga in genesList.keys():
+        geneSymbol, organism = genesList[geneAndOrga][0], genesList[geneAndOrga][1]
+        # Initialisation dico associé au gène
+        uniprotData[geneAndOrga] = {}
+
+        # Création de l'URL
+
+        url = f"https://rest.uniprot.org/uniprotkb/search?query={'organism_name:' + organism}+{'gene_exact:' + geneSymbol}&format=json"
+
+        # Lecture de la réponse serveur
 
         r = requests.get(url)
-
         decoded = r.json()
 
-        uni_id.append(decoded["results"][0]["primaryAccession"])
+        # Récupération des valeurs
+
+        id = decoded["results"][0]["primaryAccession"]
         try:
-            uni_name.append(
-                decoded["results"][0]["proteinDescription"]["recommendedName"][
-                    "fullName"
-                ]["value"]
-            )
+            name = decoded["results"][0]["proteinDescription"]["recommendedName"]["fullName"]["value"]
         except KeyError:
-            uni_name.append(
-                "No full name"
-            )  # A corriger car sans doute un nom quelque part
+            name = "No data" # TODO a ameliorer
+        
+        #############################################################
 
-    df["uni_id"] = uni_id
-    df["uni_name"] = uni_name
+        ### Infos pour le gène
 
-    return df
+        uniprotData[geneAndOrga] = {"uniprotID" : id,
+                                "uniprotName" : name
+                                }
 
+        #############################################################
 
-def main(argv):
-    parser = argparse.ArgumentParser()
+    return(uniprotData)
 
-    parser.add_argument(
-        "--gene_symbol", help="Gene Symbol list", default="GeneSymbols_2.txt"
-    )
-
-    args = parser.parse_args()
-
-    df = create_dataframe(args.gene_symbol)
-
-    df = get_uniprot_id(df)
-
-    print(df)
-
-
-if __name__ == "__main__":
-    main(sys.argv)
+######################################################################

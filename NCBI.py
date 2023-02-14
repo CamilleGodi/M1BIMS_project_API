@@ -14,7 +14,7 @@ Entrez.email = "camille.godi@univ-rouen.fr"
 
 def ncbi(filePath:str):
     """
-    MODULE POUR L'EXPORT DE DONNEES DEPUIS NCBI
+    MODULE POUR L'IMPORT DE DONNEES DEPUIS NCBI
 
     Données pour chaque gène (dico):
     - ncbiFullName           -> Nom commun complet du gène
