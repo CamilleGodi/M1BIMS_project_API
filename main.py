@@ -12,6 +12,7 @@ from NCBI import ncbi
 from uniprot import uniprot
 from PDB import pdb
 from Pfam import pfam
+from Prosite import prosite
 
 ######################################################################
 
@@ -34,12 +35,16 @@ def table_generator(filePath:str) :
     resUniprot = uniprot(filePath)
 
     ### RESULTATS MODULE PDB
-    print("### Fetching Uniprot data...")
+    print("### Fetching PDB data...")
     resPDB = pdb(resUniprot)
 
     ### RESULTATS MODULE PFAM
     print("### Fetching Pfam data...")
     resPfam = pfam(resUniprot)
+
+    ### RESULTATS MODULE PROSITE
+    print("### Fetching Prosite data...")
+    resProSite = prosite(resUniprot)
 
     ##################################################################
 

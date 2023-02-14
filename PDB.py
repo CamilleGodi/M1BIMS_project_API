@@ -5,11 +5,6 @@
 
 import requests
 
-from Bio import Entrez
-from GeneDictGenerator import gene_dict_generator
-
-Entrez.email = "erwan.quignon@univ-rouen.fr"
-
 ######################################################################
 
 def pdb(resUniprot):

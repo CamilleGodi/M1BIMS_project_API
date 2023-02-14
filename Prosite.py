@@ -7,45 +7,44 @@ import requests
 
 ######################################################################
 
-# NOTE : le site Pfam est décomissionné depuis janvier 2023. Interpro sera donc utilisé à la place.
-
-def pfam(resUniprot):
+def prosite(resUniprot):
     """
-    MODULE POUR L'IMPORT DE DONNEES DEPUIS Pfam (Interpro)
+    MODULE POUR L'IMPORT DE DONNEES DEPUIS Prosite
 
     Données pour chaque gène (dico):
-    - pfamID -> ID Interpro
-    - pfamLink -> Lien graphique Interpro
+    - prositeID -> ID Prosite
+    - prositeLink -> Lien graphique Prosite
 
-    Exemple d'accès à l'ID Pfam pour un gène *A* dans organisme 1 *orga_1* 
+    Exemple d'accès à l'ID Prosite pour un gène *A* dans organisme 1 *orga_1* 
     (à partir d'un fichier situé en *filePath*):
-    > res = ncbi(filePath) ; res["A,orga1"]['pfamID']
+    > res = ncbi(filePath) ; res["A,orga1"]['prositeID']
     """
 
     # Data NCBI pour chaque gène
-    pfamData = {}
+    prositeData = {}
 
     for keys in resUniprot.keys():
         ids = []
         links= []
         for key in resUniprot[keys]["uniprotID"].split(" "):
-            url = f"https://www.ebi.ac.uk/interpro/api/entry/interpro/protein/uniprot/{key}"
+            url = f"https://prosite.expasy.org/cgi-bin/prosite/PSScan.cgi?seq={key}&output=json"
 
             try:
                 r = requests.get(url)
                 decoded = r.json()
-                for id in decoded["results"]:
-                    ids.append(id["metadata"]["accession"])
-                    links.append(f"https://www.ebi.ac.uk/interpro/protein/reviewed/{id['proteins'][0]['accession']}/")
+                for id in decoded["matchset"]:
+                    ids.append(id["signature_ac"])
+                links.append(f"https://prosite.expasy.org/cgi-bin/prosite/PSView.cgi?spac={key}")
 
             except requests.exceptions.JSONDecodeError:
                 pass
-            
+
+
         #############################################################
 
         ### Infos pour le gène
-        pfamData[keys] = {"pfamID": ids, "pfamLink": links}
+        prositeData[keys] = {"prositeID": ids, "prositeLink": links}
 
-    return(pfamData)
+    return(prositeData)
 
 ######################################################################
