@@ -123,8 +123,11 @@ def table_generator(filePath:str) :
             ### DONNEES PDB
             # PDB IDs/names
             outputHtml.write(f"""<td><div class="scroll">""")
-            for i in range(len(resPDB[geneAndOrga]['pdbID'])):
-                outputHtml.write(f"<a href=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>")
+            if len(resPDB[geneAndOrga]['pdbID']) == 0 :
+                outputHtml.write("Data Not Found")
+            else :
+                for i in range(len(resPDB[geneAndOrga]['pdbID'])):
+                    outputHtml.write(f"<a href=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>")
             outputHtml.write(f"</div></td>")
 
 
