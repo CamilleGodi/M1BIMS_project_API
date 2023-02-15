@@ -9,7 +9,7 @@ from GeneDictGenerator import gene_dict_generator
 
 from Ensembl import ensembl
 from NCBI import ncbi
-from uniprot import uniprot
+from Uniprot import uniprot
 from PDB import pdb
 from Pfam import pfam
 from Prosite import prosite
