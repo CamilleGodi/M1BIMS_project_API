@@ -4,6 +4,10 @@
 
 Script créant un tableau intéractif d'annotation de gènes depuis différentes bases de données en ligne (Ensembl, NCBI, UniProt...) via leurs APIs respectives.  
 
+> Attention, nécessite la version du package python *requests* 2.27 ou supérieure.
+
+---
+
 ## Pour lancer le script:
 ```python3 main.py```
 
