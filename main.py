@@ -22,13 +22,13 @@ def table_generator(filePath:str) :
 
     ##################################################################
 
-    ### RESULTATS MODULE ENSEMBL
-    print("### Fetching Ensembl data...")
-    resEnsembl = ensembl(filePath)
-
     ### RESULTATS MODULE NCBI
     print("### Fetching NCBI data...")
     resNcbi = ncbi(filePath)
+
+    ### RESULTATS MODULE ENSEMBL
+    print("### Fetching Ensembl data...")
+    resEnsembl = ensembl(filePath)
 
     ### RESULTATS MODULE UNIPROT
     print("### Fetching Uniprot data...")
@@ -38,7 +38,7 @@ def table_generator(filePath:str) :
     print("### Fetching PDB data...")
     resPDB = pdb(resUniprot)
 
-    ### RESULTATS MODULE PFAM
+    ### RESULTATS MODULE PFAM/InterPro
     print("### Fetching Pfam data...")
     resPfam = pfam(resUniprot)
 
@@ -51,7 +51,7 @@ def table_generator(filePath:str) :
     ### OUTPUT
     print("### Building HTML output...")
     with open("Results.html", "w") as outputHtml :
-        # partie commune
+        # partie commune tableau
         with open("HeadResults.html", "r") as header :
             for line in header.readlines():
                 print(line)
@@ -66,15 +66,20 @@ def table_generator(filePath:str) :
             outputHtml.write(f"<td>{geneSymbol}</td>\n")
             outputHtml.write(f"<td><i>{organism}</i></td>\n")
 
+            ### DONNEES NCBI
+
+
             ### DONNEES ENSEMBL
+            # Ensembl gene ID
             outputHtml.write(f"<td>{resEnsembl[geneAndOrga]['ensGeneId']}</td>\n")
         
+            # Genome Browser
             if resEnsembl[geneAndOrga]['ensUrlBrowser'] == "Data not found" :
                 outputHtml.write(f"<td>Data not found</td>\n")
             else:
                 outputHtml.write(f"<td><a href={resEnsembl[geneAndOrga]['ensUrlBrowser']}>GenomeBrowser</a></td>\n")
             
-            # Liste protéines
+            # Liste transcrits
             outputHtml.write(f"""<td><div class="scroll">""")
             for transcrit in resEnsembl[geneAndOrga]['ensTranscriptId'] :
                 outputHtml.write(f"{transcrit}<br>")
@@ -86,6 +91,32 @@ def table_generator(filePath:str) :
                 outputHtml.write(f"{ortho}<br>")
             outputHtml.write(f"</div></td>\n")
             outputHtml.write(f"</tr>\n")
+
+            ### DONNEES UniProt
+            # Prot name
+            # Prot ID
+
+            ### DONNEES PDB
+            # PDB ID
+
+            ### DONNEES PFAM/INTERPRO
+            # Interpro ID
+
+            ### DONNEES PROSITE
+            # Prosite ID
+
+            ### DONNEES STRING
+            # Interactions (lien)
+
+            ### DONNEES KEGG
+            # KEGG IDs
+            # KEGG Pathways
+
+
+            ### DONNEES GO
+            # Cellular Component
+            # Molecular Function
+            # Biological Process
 
         # fin tableau
         outputHtml.write("""
