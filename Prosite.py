@@ -13,7 +13,6 @@ def prosite(resUniprot):
 
     Données pour chaque gène (dico):
     - prositeID -> ID Prosite
-    - prositeLink -> Lien graphique Prosite
 
     Exemple d'accès à l'ID Prosite pour un gène *A* dans organisme 1 *orga_1* 
     (à partir d'un fichier situé en *filePath*):
@@ -25,7 +24,6 @@ def prosite(resUniprot):
 
     for keys in resUniprot.keys():
         ids = []
-        links= []
         for key in resUniprot[keys]["uniprotID"].split(" "):
             url = f"https://prosite.expasy.org/cgi-bin/prosite/PSScan.cgi?seq={key}&output=json"
 
@@ -34,16 +32,14 @@ def prosite(resUniprot):
                 decoded = r.json()
                 for id in decoded["matchset"]:
                     ids.append(id["signature_ac"])
-                links.append(f"https://prosite.expasy.org/cgi-bin/prosite/PSView.cgi?spac={key}")
 
             except requests.exceptions.JSONDecodeError:
                 pass
 
-
         #############################################################
 
         ### Infos pour le gène
-        prositeData[keys] = {"prositeID": ids, "prositeLink": links}
+        prositeData[keys] = {"prositeID": ids}
 
     return(prositeData)
 

@@ -119,18 +119,21 @@ def table_generator(filePath:str) :
             # Prot ID
             outputHtml.write(f"<td>{resUniprot[geneAndOrga]['uniprotID']}</td>")
 
+
             ### DONNEES PDB
             # PDB IDs/names
             outputHtml.write(f"""<td><div class="scroll">""")
             for i in range(len(resPDB[geneAndOrga]['pdbID'])):
-                outputHtml.write(f"<a ref=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>")
+                outputHtml.write(f"<a href=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>")
             outputHtml.write(f"</div></td>")
+
 
             ### DONNEES PFAM/INTERPRO
             # Interpro IDs
             outputHtml.write(f"""<td><div class="scroll">""")
+            outputHtml.write(f"<a href={resPfam[geneAndOrga]['pfamLink']}>[Link]</a><br>")
             for i in range(len(resPfam[geneAndOrga]['pfamID'])):
-                outputHtml.write(f"<a href={resPfam[geneAndOrga]['pfamLink'][i]}>{resPfam[geneAndOrga]['pfamID'][i]}</a><br>")
+                outputHtml.write(f"{resPfam[geneAndOrga]['pfamID'][i]}<br>")
             outputHtml.write(f"</div></td>")
             
 
@@ -138,7 +141,7 @@ def table_generator(filePath:str) :
             # Prosite ID
             outputHtml.write(f"""<td><div class="scroll">""")
             for i in range(len(resProSite[geneAndOrga]['prositeID'])):
-                outputHtml.write(f"<a href={resProSite[geneAndOrga]['prositeLink']}>{resProSite[geneAndOrga]['prositeID'][i]}</a><br>")
+                outputHtml.write(f"<a href=https://prosite.expasy.org/cgi-bin/prosite/PSView.cgi?spac={resProSite[geneAndOrga]['prositeID'][i]}>{resProSite[geneAndOrga]['prositeID'][i]}</a><br>")
             outputHtml.write(f"</div></td>")
 
 
