@@ -131,17 +131,18 @@ def table_generator(filePath:str) :
             ### DONNEES PFAM/INTERPRO
             # Interpro IDs
             outputHtml.write(f"""<td><div class="scroll">""")
-            outputHtml.write(f"<a href={resPfam[geneAndOrga]['pfamLink']}>[Link]</a><br>")
+            outputHtml.write(f"<a href={resPfam[geneAndOrga]['pfamLink'][0]}>[Protein Link]</a><br>")
             for i in range(len(resPfam[geneAndOrga]['pfamID'])):
-                outputHtml.write(f"{resPfam[geneAndOrga]['pfamID'][i]}<br>")
+                outputHtml.write(f"<a href=https://www.ebi.ac.uk/interpro/entry/InterPro/{resPfam[geneAndOrga]['pfamID'][i]}/>{resPfam[geneAndOrga]['pfamID'][i]}</a><br>")
             outputHtml.write(f"</div></td>")
             
 
             ### DONNEES PROSITE
             # Prosite ID
             outputHtml.write(f"""<td><div class="scroll">""")
+            outputHtml.write(f"<a href=https://prosite.expasy.org/cgi-bin/prosite/PSView.cgi?spac={resProSite[geneAndOrga]['prositeLink']}>[Protein Link]</a><br>")
             for i in range(len(resProSite[geneAndOrga]['prositeID'])):
-                outputHtml.write(f"<a href=https://prosite.expasy.org/cgi-bin/prosite/PSView.cgi?spac={resProSite[geneAndOrga]['prositeID'][i]}>{resProSite[geneAndOrga]['prositeID'][i]}</a><br>")
+                outputHtml.write(f"<a href=https://prosite.expasy.org/{resProSite[geneAndOrga]['prositeID'][i]}>{resProSite[geneAndOrga]['prositeID'][i]}</a><br>")
             outputHtml.write(f"</div></td>")
 
 
