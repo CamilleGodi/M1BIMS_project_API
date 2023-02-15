@@ -51,71 +51,11 @@ def table_generator(filePath:str) :
     ### OUTPUT
     print("### Building HTML output...")
     with open("Results.html", "w") as outputHtml :
-        #partie commune
-        outputHtml.write('''
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-
-    <title>Results</title>
-   
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=6e5593ad4c5375eef5d919cfc10a0a54">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-
-	<script type="text/javascript" src="/media/js/site.js?_=a25d93b0b2ef7712783f57407f987734"></script>
-	<script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fdata_sources%2Fjs_array.html" async></script>
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
-
-    <script type="text/javascript" class="init">
-        $(document).ready(function() {
-            $("#table_genes").DataTable( {
-                "scrollY": 700,
-                "scrollX": true,
-                "lengthMenu": [5, 10, 15, 20, "All" ],
-                fixedColumns: {leftColumns: 2}
-            } );
-        } );
-    </script>
-
-    <style>
-        table {border-collapse: collapse}
-        th {text-align: middle}
-        .scroll {white-space: nowrap ; max-height: 150px; overflow: scroll}
-        table, th, td { border: 1px solid black; border-collapse: collapse}
-    </style>
-</head>
-
-<body>
-    
-<h1 align="center"> Resultats </h1>
-
-<br>
-
-<table id="table_genes" class="display" width="100%"> 
-
-    <thead>
-    <tr>
-        <th colspan="2">Query</th>
-        <th colspan="4">Ensembl</th>
-    </tr>
-    <tr>
-        <th>Gene symbol</th>
-        <th>Species</th>
-        <th>Gene ID</th>
-        <th>Genome Browser</th>
-        <th>Transcript IDs</th>
-        <th>Ortholog list</th>
-    </tr>
-</thead>
-
-<tbody>
-            ''')
+        # partie commune
+        with open("HeadResults.html", "r") as header :
+            for line in header.readlines():
+                print(line)
+                outputHtml.write(line)
 
         # partie par gène
         for geneAndOrga in genesList.keys():
