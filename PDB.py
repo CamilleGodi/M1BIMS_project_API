@@ -12,11 +12,11 @@ def pdb(resUniprot):
     MODULE POUR L'IMPORT DE DONNEES DEPUIS PDB
 
     Données pour chaque gène (dico):
-    - pdbID -> Liste avec ID PDB du gène et le domaine associé
+    - pdbID -> Liste avec ID PDB du gène et le domaine associé (liste de listes)
 
     Exemple d'accès aux données pour un gène *A* dans organisme 1 *orga_1* 
     (à partir d'un fichier situé en *filePath*):
-    > res = ncbi(filePath) ; res["A,orga1"]['pdbID']
+    > res = pdb(filePath) ; res["A,orga1"]['pdbID']
     """
 
     # Data NCBI pour chaque gène

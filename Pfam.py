@@ -19,7 +19,7 @@ def pfam(resUniprot):
 
     Exemple d'accès à l'ID Pfam pour un gène *A* dans organisme 1 *orga_1* 
     (à partir d'un fichier situé en *filePath*):
-    > res = ncbi(filePath) ; res["A,orga1"]['pfamID']
+    > res = pfam(filePath) ; res["A,orga1"]['pfamID']
     """
 
     # Data NCBI pour chaque gène

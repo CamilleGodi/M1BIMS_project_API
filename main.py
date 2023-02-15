@@ -114,22 +114,33 @@ def table_generator(filePath:str) :
 
             ### DONNEES UniProt
             # Prot name
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"<td>{resUniprot[geneAndOrga]['uniprotName']}</td>")
 
             # Prot ID
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"<td>{resUniprot[geneAndOrga]['uniprotID']}</td>")
 
             ### DONNEES PDB
-            # PDB ID
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            # PDB IDs/names
+            outputHtml.write(f"""<td><div class="scroll">""")
+            for i in range(len(resPDB[geneAndOrga]['pdbID'])):
+                outputHtml.write(f"<a ref=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>")
+            outputHtml.write(f"</div></td>")
 
             ### DONNEES PFAM/INTERPRO
-            # Interpro ID
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            # Interpro IDs
+            outputHtml.write(f"""<td><div class="scroll">""")
+            for i in range(len(resPfam[geneAndOrga]['pfamID'])):
+                outputHtml.write(f"<a href={resPfam[geneAndOrga]['pfamLink'][i]}>{resPfam[geneAndOrga]['pfamID'][i]}</a><br>")
+            outputHtml.write(f"</div></td>")
+            
 
             ### DONNEES PROSITE
             # Prosite ID
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            for i in range(len(resProSite[geneAndOrga]['prositeID'])):
+                outputHtml.write(f"<a href={resProSite[geneAndOrga]['prositeLink']}>{resProSite[geneAndOrga]['prositeID'][i]}</a><br>")
+            outputHtml.write(f"</div></td>")
+
 
             ### DONNEES STRING
             # Interactions (lien)
@@ -154,7 +165,7 @@ def table_generator(filePath:str) :
 
             # fin de ligne/gène
             outputHtml.write(f"</tr>")
-            
+
         # fin tableau
         outputHtml.write("""
 </tbody>

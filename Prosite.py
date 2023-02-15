@@ -17,7 +17,7 @@ def prosite(resUniprot):
 
     Exemple d'accès à l'ID Prosite pour un gène *A* dans organisme 1 *orga_1* 
     (à partir d'un fichier situé en *filePath*):
-    > res = ncbi(filePath) ; res["A,orga1"]['prositeID']
+    > res = prosite(filePath) ; res["A,orga1"]['prositeID']
     """
 
     # Data NCBI pour chaque gène
