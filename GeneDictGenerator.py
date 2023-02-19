@@ -6,7 +6,9 @@
 def gene_dict_generator(filePath:str): 
     """
     GENERATEUR DE LISTE GENE + ESPECE ASSOCIEE DEPUIS FICHIER EXTERNE
-    Sortie : genesList["gene,Orga"] = ("geneSymbol","organism")
+    Sortie : 
+    genesDict = gene_dict_generator(filePath);
+    genesDict["geneSymbol,orga"] = ("geneSymbol","organism")
     """
     genesDict = {} 
     with open(filePath,"r") as file :
