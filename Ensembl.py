@@ -3,6 +3,7 @@
 
 ######################################################################
 
+import time
 import requests
 
 from GeneDictGenerator import gene_dict_generator
@@ -112,10 +113,11 @@ def ensembl(filePath:str):
                                             "ensProteinId" : protIds,
                                             "ensOrthoList" : orthos,
                                             "ensUrlPrefix" : dbext}
+            time.sleep(1) # 1 seconde de buffer pour pas se faire kick du serveur
     return ensemblData
 
 ######################################################################
 
 #TEST module individuel:
-#for k,v in ensembl("GeneSymbols.txt").items():
-#    print(k,v)
+for k,v in ensembl("GeneSymbols.txt").items():
+    print(k,v)

@@ -3,7 +3,7 @@
 
 ######################################################################
 
-import re
+import re, time
 from Bio import Entrez
 
 from GeneDictGenerator import gene_dict_generator
@@ -115,10 +115,11 @@ def ncbi(filePath:str):
                                 "ncbiGeneId" : geneId,
                                 "ncbiTranscriptAccess" : listTranscriptAccess,
                                 "ncbiProteinAccess" : ncbiProteinAccess }
+        #time.sleep(1) # 1 seconde de buffer pour pas se faire kick du serveur
     return(ncbiData)
 
 ######################################################################
 
 #TEST module individuel:
-#for k,v in ncbi("GeneSymbols.txt").items():
-#    print(k,v)
+for k,v in ncbi("GeneSymbols.txt").items():
+    print(k,v)
