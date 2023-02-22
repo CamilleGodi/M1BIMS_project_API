@@ -13,7 +13,7 @@ def info_gene_ontology(resUniprot):
     Données pour chaque ID Uniprot correspondent les trois go termes (bp,cc,mf) :
     
     - bioProcess -> dictionnaire retourné associant chaque ID BP et les termes correspondants à chaque couple gene et organisme
-    - cellFunction -> dictionnaire retourné associant chaque ID MF et les termes correspondants à chaque couple gene et organisme
+    - molFunction -> dictionnaire retourné associant chaque ID MF et les termes correspondants à chaque couple gene et organisme
     - cellComponent -> dictionnaire retourné associant chaque ID CC et les termes coresspondants à chaque couple gene et organisme
     """
     bioProcess = {}
