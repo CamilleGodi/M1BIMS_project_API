@@ -44,7 +44,11 @@ def info_gene_ontology(resUniprot):
                     #go_BPcategory = go_bp["gocategory"]
                     BP_term = go_bp["term"]
                     listBP.append([go_BPid, BP_term])
-                bioProcess[keys] = listBP
+                # Elimination des duplicats
+                listBPnoDuplicate = []
+                [listBPnoDuplicate.append(x) for x in listBP if x not in listBPnoDuplicate]
+
+                bioProcess[keys] = listBPnoDuplicate
         #            print(bioProcess)
 
                 #récupération des informations CC
@@ -54,7 +58,11 @@ def info_gene_ontology(resUniprot):
                     #go_CCcategory = go_cc["gocategory"]
                     CC_term = go_cc["term"]
                     listCC.append([go_CCid, CC_term])
-                cellComponent[keys] = listCC    
+                # Elimination des duplicats
+                listCCnoDuplicate = []
+                [listCCnoDuplicate.append(x) for x in listCC if x not in listCCnoDuplicate]
+
+                cellComponent[keys] = listCCnoDuplicate    
          #            print(cellComponent)
 
                 #récupération des informations MF
@@ -64,7 +72,11 @@ def info_gene_ontology(resUniprot):
                     #go_MFcategory = go_mf["category"]
                     MF_term = go_mf["term"]
                     listMF.append([go_MFid, MF_term])
-                molFunction[keys]= listMF
+                # Elimination des duplicats
+                listMFnoDuplicate = []
+                [listMFnoDuplicate.append(x) for x in listMF if x not in listMFnoDuplicate]
+
+                molFunction[keys]= listMFnoDuplicate
 
 #                   print(molFunction)
     return bioProcess, cellComponent, molFunction
