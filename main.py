@@ -51,6 +51,7 @@ def table_generator(filePath:str) :
 
     ### RESULTATS MODULE STRING
     print("### Fetching STRING data...")
+    resString = network_link_string(resUniprot)
 
     ### RESULTATS MODULE KEGG
     print("### Fetching KEGG data...")
@@ -164,8 +165,12 @@ def table_generator(filePath:str) :
 
             ### DONNEES STRING
             # Interactions (lien)
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            if geneAndOrga in resString.keys() :
+                outputHtml.write(f"<td><a href=https://string-db.org/network/{resString[geneAndOrga]['StringID']}>{resString[geneAndOrga]['StringID']}<br>(Lien intéractions dynamique)</a></td>")
+            else : 
+                outputHtml.write(f"<td>Data Not Found<br></td>")
 
+            
             ### DONNEES KEGG
             # KEGG IDs
             outputHtml.write(f"<td>PLACEHOLDER</td>")
@@ -200,6 +205,7 @@ def table_generator(filePath:str) :
             else:
                 outputHtml.write(f"Data Not Found<br>")
             outputHtml.write(f"</div></td>")
+
 
             # fin de ligne/gène
             outputHtml.write(f"</tr>")
