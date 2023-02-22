@@ -119,5 +119,5 @@ def ensembl(filePath:str):
 ######################################################################
 
 #TEST module individuel:
-for k,v in ensembl("GeneSymbols.txt").items():
-    print(k,v)
+#for k,v in ensembl("GeneSymbols.txt").items():
+#    print(k,v)
