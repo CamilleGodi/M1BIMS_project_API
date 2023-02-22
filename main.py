@@ -13,6 +13,9 @@ from Uniprot import uniprot
 from PDB import pdb
 from Pfam import pfam
 from Prosite import prosite
+from STRING import network_link_string
+from KEGG import kegg_data
+from GeneOntology import info_gene_ontology
 
 ######################################################################
 
@@ -45,6 +48,15 @@ def table_generator(filePath:str) :
     ### RESULTATS MODULE PROSITE
     print("### Fetching Prosite data...")
     resProSite = prosite(resUniprot)
+
+    ### RESULTATS MODULE STRING
+    print("### Fetching STRING data...")
+
+    ### RESULTATS MODULE KEGG
+    print("### Fetching KEGG data...")
+
+    ### RESULTATS MODULE GENEONTOLOGY
+    print("### Fetching GeneOntology data...")
 
     ##################################################################
 
