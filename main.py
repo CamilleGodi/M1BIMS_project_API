@@ -178,7 +178,7 @@ def table_generator(filePath:str) :
             outputHtml.write(f"""<td><div class="scroll">""")
             if geneAndOrga in cellComponent.keys() :
                 for cc in cellComponent[geneAndOrga]:
-                    outputHtml.write(f"{cc[0]}: {cc[1]}<br>")
+                    outputHtml.write(f"<a href=http://amigo.geneontology.org/amigo/term/{cc[0]}>{cc[0]}</a> : {cc[1]}<br>")
             else:
                 outputHtml.write(f"Data Not Found<br>")
             outputHtml.write(f"</div></td>")
@@ -187,7 +187,7 @@ def table_generator(filePath:str) :
             outputHtml.write(f"""<td><div class="scroll">""")
             if geneAndOrga in molFunction.keys() :
                 for mf in molFunction[geneAndOrga]:
-                    outputHtml.write(f"{mf[0]}: {mf[1]}<br>")
+                    outputHtml.write(f"<a href=http://amigo.geneontology.org/amigo/term/{mf[0]}>{mf[0]}</a> : {mf[1]}<br>")
             else:
                 outputHtml.write(f"Data Not Found<br>")
             outputHtml.write(f"</div></td>")
@@ -196,7 +196,7 @@ def table_generator(filePath:str) :
             outputHtml.write(f"""<td><div class="scroll">""")
             if geneAndOrga in bioProcess.keys() :
                 for bp in bioProcess[geneAndOrga]:
-                    outputHtml.write(f"{bp[0]}: {bp[1]}<br>")
+                    outputHtml.write(f"<a href=http://amigo.geneontology.org/amigo/term/{bp[0]}>{bp[0]}</a> : {bp[1]}<br>")
             else:
                 outputHtml.write(f"Data Not Found<br>")
             outputHtml.write(f"</div></td>")
