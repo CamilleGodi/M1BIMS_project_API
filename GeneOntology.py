@@ -60,6 +60,6 @@ def info_gene_ontology(resUniprot):
     return bioProcess, cellComponent, molFunction
 
 
-resUniprot = uniprot("GeneSymbols.txt")
-a = info_gene_ontology(resUniprot)
-print(a)
+# resUniprot = uniprot("GeneSymbols.txt")
+# a = info_gene_ontology(resUniprot)
+# print(a)

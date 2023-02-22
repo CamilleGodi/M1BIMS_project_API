@@ -62,6 +62,6 @@ def network_link_string(resUniprot):
                 
     return infoString
 
-resUniprot =uniprot("GeneSymbols.txt")
-a = network_link_string(resUniprot)
-print(a)
+# resUniprot =uniprot("GeneSymbols.txt")
+# a = network_link_string(resUniprot)
+# print(a)

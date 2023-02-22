@@ -27,7 +27,7 @@ def kegg_data(resNcbi):
         except:
             continue
     infoPath = {}  #dictionnaire des IDs et noms des pathways
-    for keys in resNcbi.keys():
+    for keys in resNcbi.keys():  # WARNINGS! je reparcours les keys au lieu de tout mettre sous la toute premiere boucle car lorsque je le fais les ID NCBI ne sont plus récupérés et le code ne marche pas!
         for keggID in keggIDs: 
             
         #    linkInfoKegg = f"https://www.genome.jp/dbget-bin/www_bget?{keggID}"  #Exemple de lien vers KEGG à partir des IDs KEGG
@@ -61,8 +61,8 @@ def kegg_data(resNcbi):
     return infoPath
 
 
-resNcbi = ncbi("GeneSymbols.txt")
-a = kegg_data(resNcbi)
-print(a)
+# resNcbi = ncbi("GeneSymbols.txt")
+# a = kegg_data(resNcbi)
+# print(a)
 
-#'keggID': keggID,
+ 
