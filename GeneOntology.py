@@ -3,7 +3,6 @@
 from mygene import MyGeneInfo
 from goatools import obo_parser
 from GeneDictGenerator import gene_dict_generator
-from Uniprot import uniprot
 data = MyGeneInfo()
 
 
@@ -64,7 +63,7 @@ def info_gene_ontology(resUniprot):
 #                   print(molFunction)
     return bioProcess, cellComponent, molFunction
 
-
-resUniprot = uniprot("GeneSymbols.txt")
-bioProcess, cellComponent, molFunction = info_gene_ontology(resUniprot)
-print(bioProcess, cellComponent, molFunction)
+#from Uniprot import uniprot
+#resUniprot = uniprot("GeneSymbols.txt")
+#bioProcess, cellComponent, molFunction = info_gene_ontology(resUniprot)
+#print(bioProcess, cellComponent, molFunction)
