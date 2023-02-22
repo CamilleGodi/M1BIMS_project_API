@@ -51,7 +51,7 @@ def uniprot(filePath:str):
         try:
             name = decoded["results"][0]["proteinDescription"]["recommendedName"]["fullName"]["value"] # TODO récupérer plusieurs noms ?
         except KeyError:
-            name = "No data" # TODO a ameliorer
+            name = "Data Not Found" # TODO a ameliorer -> nan en vrai ça suffit comme ça je pense tqt (Cam)
         
         #############################################################
 
