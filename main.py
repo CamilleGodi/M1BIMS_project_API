@@ -57,6 +57,7 @@ def table_generator(filePath:str) :
 
     ### RESULTATS MODULE GENEONTOLOGY
     print("### Fetching GeneOntology data...")
+    bioProcess, cellComponent, molFunction = info_gene_ontology(resUniprot)
 
     ##################################################################
 
@@ -174,13 +175,31 @@ def table_generator(filePath:str) :
 
             ### DONNEES GO
             # Cellular Component
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            if geneAndOrga in cellComponent.keys() :
+                for cc in cellComponent[geneAndOrga]:
+                    outputHtml.write(f"{cc[0]}: {cc[1]}<br>")
+            else:
+                outputHtml.write(f"Data Not Found<br>")
+            outputHtml.write(f"</div></td>")
 
             # Molecular Function
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            if geneAndOrga in molFunction.keys() :
+                for mf in molFunction[geneAndOrga]:
+                    outputHtml.write(f"{mf[0]}: {mf[1]}<br>")
+            else:
+                outputHtml.write(f"Data Not Found<br>")
+            outputHtml.write(f"</div></td>")
 
             # Biological Process
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            if geneAndOrga in bioProcess.keys() :
+                for bp in bioProcess[geneAndOrga]:
+                    outputHtml.write(f"{bp[0]}: {bp[1]}<br>")
+            else:
+                outputHtml.write(f"Data Not Found<br>")
+            outputHtml.write(f"</div></td>")
 
             # fin de ligne/gène
             outputHtml.write(f"</tr>")
