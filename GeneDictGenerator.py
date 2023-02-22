@@ -20,6 +20,6 @@ def gene_dict_generator(filePath:str):
 
 #TEST fonction liste gènes et organismes associés (gene_list_generator):
 #for k,v in gene_dict_generator("GeneSymbols.txt").items():
-#    print(k,v)
+#   print("clé :", k,"| valeur :", v)
 
 ######################################################################
