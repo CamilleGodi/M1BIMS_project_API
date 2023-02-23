@@ -182,7 +182,7 @@ def table_generator(filePath:str) :
             ### DONNEES STRING
             # Interactions (lien)
             if geneAndOrga in resString.keys() :
-                outputHtml.write(f"<td>{resString[geneAndOrga]['StringID']}<br><a href=https://string-db.org/network/{resString[geneAndOrga]['StringID']}>Intéractions (dynamique)</a></td><br><td><a href=https://string-db.org/api/highres_image/network?identifiers={resString[geneAndOrga]['StringID']}>{resString[geneAndOrga]['StringID']}<br>(zoom, fixe)</a></td>")
+                outputHtml.write(f"<td>{resString[geneAndOrga]['StringID']}<br><a href=https://string-db.org/network/{resString[geneAndOrga]['StringID']}>Interactions (dynamic)</a><br><a href=https://string-db.org/api/highres_image/network?identifiers={resString[geneAndOrga]['StringID']}>Interactions (zoomed, still)</a></td>")
             else : 
                 outputHtml.write(f"<td>Data Not Found<br></td>")
 
