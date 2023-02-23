@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 import requests
 import json
-from Uniprot import uniprot
+
 string_api_url = "https://version-11-5.string-db.org/api"
 output_format = "tsv-no-header"
 method = "get_string_ids"
@@ -12,7 +12,7 @@ def network_link_string(resUniprot):
     """
     MODULE POUR L'IMPORT DE DONNEES DEPUIS la base de Données STRING (utilise des IDs Uniprot)
     Données pour chaque ID Uniprot:
-    - infoString   -> dictionnaire retourné par la fonction et qui contient les identifiants STRING
+    - StringID   -> dictionnaire retourné par la fonction et qui contient les identifiants STRING
 
     """
     infoString = {} #initialisation du dictionnaire
@@ -53,7 +53,7 @@ def network_link_string(resUniprot):
                     try:
                         l = line.split("\t")
                         string_identifier = l[2]  #On récupère les identifiants STRING
-                        infoString[keys]= {"id_String": string_identifier}
+                        infoString[keys]= {"StringID": string_identifier}
                     except:
                         continue
                     # récupérations des liens vers le réseau d'interaction
@@ -62,6 +62,7 @@ def network_link_string(resUniprot):
                 
     return infoString
 
-# resUniprot =uniprot("GeneSymbols.txt")
-# a = network_link_string(resUniprot)
-# print(a)
+#from Uniprot import uniprot
+#resUniprot =uniprot("GeneSymbols.txt")
+#a = network_link_string(resUniprot)
+#print(a)

@@ -121,5 +121,5 @@ def ncbi(filePath:str):
 ######################################################################
 
 #TEST module individuel:
-for k,v in ncbi("GeneSymbols.txt").items():
-    print(k,v)
+#for k,v in ncbi("GeneSymbols.txt").items():
+#    print(k,v)
