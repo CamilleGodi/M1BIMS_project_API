@@ -17,6 +17,12 @@ from GeneOntology import info_gene_ontology
 
 ######################################################################
 
+### INTERFACE
+from tkinter import filedialog as fd
+file = fd.askopenfilename(title="Open your file (format : 'geneSymbol,Organism')", filetypes=[('txt files','.txt'), ('csv files','.csv')])
+
+######################################################################
+
 def table_generator(filePath:str) :
     # création liste gène + espèce
     genesList = gene_dict_generator(filePath)
