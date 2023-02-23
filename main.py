@@ -3,8 +3,6 @@
 
 ######################################################################
 
-file = "GeneSymbols.txt"
-
 from GeneDictGenerator import gene_dict_generator
 
 from Ensembl import ensembl
@@ -55,6 +53,7 @@ def table_generator(filePath:str) :
 
     ### RESULTATS MODULE KEGG
     print("### Fetching KEGG data...")
+    resKegg = kegg_data(resNcbi)
 
     ### RESULTATS MODULE GENEONTOLOGY
     print("### Fetching GeneOntology data...")
@@ -173,10 +172,21 @@ def table_generator(filePath:str) :
             
             ### DONNEES KEGG
             # KEGG IDs
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            if resKegg[geneAndOrga]['keggID'] == "Data Not Found" :
+                outputHtml.write(f"Data Not Found")
+            else:
+                outputHtml.write(f"<a href=https://www.genome.jp/dbget-bin/www_bget?{resKegg[geneAndOrga]['keggID']}>{resKegg[geneAndOrga]['keggID']}</a><br>")
+            outputHtml.write(f"</div></td>")
 
             # KEGG Pathways
-            outputHtml.write(f"<td>PLACEHOLDER</td>")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            if len(resKegg[geneAndOrga]['keggInfoPathways']) == 0 :
+                outputHtml.write("Data Not Found")
+            else :
+                for i in range(len(resKegg[geneAndOrga]['keggInfoPathways'])):
+                    outputHtml.write(f"<a href=https://www.genome.jp/dbget-bin/www_bget?{resKegg[geneAndOrga]['keggInfoPathways'][i]['pathID']}>{resKegg[geneAndOrga]['keggInfoPathways'][i]['pathID']}</a> : {resKegg[geneAndOrga]['keggInfoPathways'][i]['pathName']}<br>")
+            outputHtml.write(f"</div></td>")
 
             ### DONNEES GO
             # Cellular Component
