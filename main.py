@@ -3,6 +3,8 @@
 
 ######################################################################
 
+### MODULES
+
 from GeneDictGenerator import gene_dict_generator
 
 from Ensembl import ensembl
@@ -18,8 +20,17 @@ from GeneOntology import info_gene_ontology
 ######################################################################
 
 ### INTERFACE
+
 from tkinter import filedialog as fd
-file = fd.askopenfilename(title="Open your file (format : 'geneSymbol,Organism')", filetypes=[('txt files','.txt'), ('csv files','.csv')])
+filePath = fd.askopenfilename(title="Open your file (format : 'geneSymbol,Organism')", filetypes=[('txt files','.txt'), ('csv files','.csv')])
+
+# Par défaut, si pas de fichier donné dans l'interface
+if filePath == () :
+    file = "GeneSymbols.txt" # fichier par défaut
+else :
+    file = filePath
+
+print(file)
 
 ######################################################################
 
@@ -171,7 +182,7 @@ def table_generator(filePath:str) :
             ### DONNEES STRING
             # Interactions (lien)
             if geneAndOrga in resString.keys() :
-                outputHtml.write(f"<td><a href=https://string-db.org/network/{resString[geneAndOrga]['StringID']}>{resString[geneAndOrga]['StringID']}<br>(Lien intéractions dynamique)</a></td>")
+                outputHtml.write(f"<td>{resString[geneAndOrga]['StringID']}<br><a href=https://string-db.org/network/{resString[geneAndOrga]['StringID']}>Intéractions (dynamique)</a></td><br><td><a href=https://string-db.org/api/highres_image/network?identifiers={resString[geneAndOrga]['StringID']}>{resString[geneAndOrga]['StringID']}<br>(zoom, fixe)</a></td>")
             else : 
                 outputHtml.write(f"<td>Data Not Found<br></td>")
 
