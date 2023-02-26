@@ -158,7 +158,7 @@ def table_generator(filePath:str) :
                 outputHtml.write(f"Data Not Found\n")
             else :
                 for i in range(len(resPDB[geneAndOrga]['pdbID'])):
-                    outputHtml.write(f"<a href=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>\n")
+                    outputHtml.write(f"<a href=https://www.rcsb.org/structure/{resPDB[geneAndOrga]['pdbID'][i][0]}>{resPDB[geneAndOrga]['pdbID'][i][0]}</a> : {resPDB[geneAndOrga]['pdbID'][i][1]}<br>")
             outputHtml.write(f"</div></td>\n")
 
 
