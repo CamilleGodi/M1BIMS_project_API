@@ -26,7 +26,7 @@ def info_gene_ontology(resUniprot):
     cellComponent = {}
     for keys in resUniprot.keys():
         IdsUniprot = []
-        for key in resUniprot[keys]["uniprotID"].split(" "):
+        for key in resUniprot[keys]["uniprotID"]:
             IdsUniprot.append(key)
 
         gene_info = data.querymany(IdsUniprot, scopes="uniprot", fields="go")

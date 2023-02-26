@@ -35,6 +35,8 @@ def uniprot(filePath:str):
         geneSymbol, organism = genesList[geneAndOrga][0], genesList[geneAndOrga][1]
         # Initialisation dico associé au gène
         uniprotData[geneAndOrga] = {}
+        ids = []
+        names = []
 
         # Création de l'URL
 
@@ -47,18 +49,19 @@ def uniprot(filePath:str):
 
         # Récupération des valeurs
 
-        id = decoded["results"][0]["primaryAccession"] # TODO récupérer la liste complète des ID correspondants
-        try:
-            name = decoded["results"][0]["proteinDescription"]["recommendedName"]["fullName"]["value"] # TODO récupérer plusieurs noms ?
-        except KeyError:
-            name = "Data Not Found" # TODO a ameliorer -> nan en vrai ça suffit comme ça je pense tqt (Cam)
-        
+        for id in decoded["results"]:
+            ids.append(id["primaryAccession"])
+            try:
+                names.append(id["proteinDescription"]["recommendedName"]["fullName"]["value"])
+            except KeyError:
+                names.append(id["proteinDescription"]["submissionNames"][0]["fullName"]["value"])
+
         #############################################################
 
         ### Infos pour le gène
 
-        uniprotData[geneAndOrga] = {"uniprotID" : id,
-                                "uniprotName" : name
+        uniprotData[geneAndOrga] = {"uniprotID" : ids,
+                                "uniprotName" : names
                                 }
 
         #############################################################

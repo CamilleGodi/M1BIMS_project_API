@@ -26,7 +26,7 @@ def prosite(resUniprot):
     for keys in resUniprot.keys():
         ids = []
         links= []
-        for key in resUniprot[keys]["uniprotID"].split(" "):
+        for key in resUniprot[keys]["uniprotID"]:
             url = f"https://prosite.expasy.org/cgi-bin/prosite/PSScan.cgi?seq={key}&output=json"
 
             try:

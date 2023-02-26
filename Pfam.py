@@ -28,7 +28,7 @@ def pfam(resUniprot):
     for keys in resUniprot.keys():
         ids = []
         links= []
-        for key in resUniprot[keys]["uniprotID"].split(" "):
+        for key in resUniprot[keys]["uniprotID"]:
             url = f"https://www.ebi.ac.uk/interpro/api/entry/interpro/protein/uniprot/{key}"
 
             try:

@@ -19,7 +19,7 @@ def network_link_string(resUniprot):
     
     for keys in resUniprot.keys():
         IdsUniprot = []
-        for key in resUniprot[keys]["uniprotID"].split(" "):
+        for key in resUniprot[keys]["uniprotID"]:
             IdsUniprot.append(key)
 
         

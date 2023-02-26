@@ -24,7 +24,7 @@ def pdb(resUniprot):
 
     for keys in resUniprot.keys():
         ids = []
-        for key in resUniprot[keys]["uniprotID"].split(" "):
+        for key in resUniprot[keys]["uniprotID"]:
             url = 'https://search.rcsb.org/rcsbsearch/v2/query?json={"query": {"type": "terminal", "service": "full_text", "parameters": {"value": "' + str(key) + '"} }, "return_type": "entry"}'
 
             try:
