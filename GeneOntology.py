@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf8 -*-
 from mygene import MyGeneInfo
-from goatools import obo_parser
 from GeneDictGenerator import gene_dict_generator
 data = MyGeneInfo()
 
