@@ -25,6 +25,8 @@ def uniprot(filePath:str):
     > res = uniprot(filePath) ; res["A,orga1"]['uniprotID']
     """
 
+    print("### Fetching Uniprot data...")
+
     # Création liste gène + espèce
     genesList = gene_dict_generator(filePath)
 
@@ -65,7 +67,7 @@ def uniprot(filePath:str):
                                 }
 
         #############################################################
-
+    print("Uniprot done")
     return(uniprotData)
 
 ######################################################################

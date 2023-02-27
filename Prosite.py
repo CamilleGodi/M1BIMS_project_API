@@ -20,6 +20,8 @@ def prosite(resUniprot):
     > res = prosite(filePath) ; res["A,orga1"]['prositeID']
     """
 
+    print("### Fetching Prosite data...")
+
     # Data prosite pour chaque gène
     prositeData = {}
 
@@ -44,7 +46,7 @@ def prosite(resUniprot):
 
         ### Infos pour le gène
         prositeData[keys] = {"prositeID": ids, "prositeLink": links}
-
+    print("Prosite done")
     return(prositeData)
 
 ######################################################################

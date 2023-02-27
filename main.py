@@ -5,6 +5,8 @@
 
 ### MODULES
 
+import threading
+
 from GeneDictGenerator import gene_dict_generator
 
 from Ensembl import ensembl
@@ -17,6 +19,7 @@ from STRING import network_link_string
 from KEGG import kegg_data
 from GeneOntology import info_gene_ontology
 
+import time
 ######################################################################
 
 ### INTERFACE
@@ -32,6 +35,142 @@ else :
     file = filePath
     print("file : ", file)
 
+######################################################################
+
+### THREADS
+
+class NcbiThread(threading.Thread):
+    # constructor
+    def __init__(self):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.value1 = None
+        self.value2 = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value1 = ncbi(filePath)
+        self.value2 = kegg_data(self.value1)
+
+class EnsemblThread(threading.Thread):
+    # constructor
+    def __init__(self):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.value = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value = ensembl(filePath)
+
+class UniprotThread(threading.Thread):
+    # constructor
+    def __init__(self):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.uniprot = None
+        self.pdb = None
+        self.pfam = None
+        self.prosite = None
+        self.string = None
+        self.bioprocess = None
+        self.cellcomponent = None
+        self.molfunction = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.uniprot = uniprot(filePath)
+
+        tPdb = PdbThread(self.uniprot)
+        tPfam = PfamThread(self.uniprot)
+        tProsite = PrositeThread(self.uniprot)
+        tString = StringThread(self.uniprot)
+        tGo = GoThread(self.uniprot)
+
+        tPdb.start()
+        tPfam.start()
+        tProsite.start()
+        tString.start()
+        tGo.start()
+
+        tPdb.join()
+        self.pdb = tPdb.value
+
+        tPfam.join()
+        self.pfam = tPfam.value
+
+        tProsite.join()
+        self.prosite = tProsite.value
+
+        tString.join()
+        self.string = tString.value
+
+        tGo.join()
+        self.bioprocess = tGo.value1
+        self.cellcomponent = tGo.value2
+        self.molfunction = tGo.value3
+
+class PdbThread(threading.Thread):
+    # constructor
+    def __init__(self, res):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.res = res
+        self.value = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value = pdb(self.res)
+
+class PfamThread(threading.Thread):
+    # constructor
+    def __init__(self, res):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.res = res
+        self.value = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value = pfam(self.res)
+
+class PrositeThread(threading.Thread):
+    # constructor
+    def __init__(self, res):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.res = res
+        self.value = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value = prosite(self.res)
+
+class StringThread(threading.Thread):
+    # constructor
+    def __init__(self, res):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.res = res
+        self.value = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value = network_link_string(self.res)
+
+class GoThread(threading.Thread):
+    # constructor
+    def __init__(self, res):
+        # execute the base constructor
+        threading.Thread.__init__(self)
+        self.res = res
+        self.value1 = None
+        self.value2 = None
+        self.value3 = None
+ 
+    # function executed in a new thread
+    def run(self):
+        self.value1, self.value2, self.value3 = info_gene_ontology(self.res)
 
 ######################################################################
 
@@ -41,41 +180,43 @@ def table_generator(filePath:str) :
 
     ##################################################################
 
-    ### RESULTATS MODULE NCBI
-    print("### Fetching NCBI data...")
-    resNcbi = ncbi(filePath)
+    resUniprot = None
+
+    tNcbi = NcbiThread()
+    tEnsembl = EnsemblThread()
+    tUniprot = UniprotThread()
+
+    ### LANCEMENT THREAD MODULE NCBI ET KEGG
+    tNcbi.start()
+
+    ### LANCEMENT THREAD MODULE ENSEMBL
+    tEnsembl.start()
+
+    ### LANCEMENT THREAD MODULE UNIPROT
+    tUniprot.start() 
+
+    ### RESULTATS MODULES NCBI ET KEGG
+
+    tNcbi.join()
+    resNcbi = tNcbi.value1
+    resKegg = tNcbi.value2
 
     ### RESULTATS MODULE ENSEMBL
-    print("### Fetching Ensembl data...")
-    resEnsembl = ensembl(filePath)
+
+    tEnsembl.join()
+    resEnsembl = tEnsembl.value
 
     ### RESULTATS MODULE UNIPROT
-    print("### Fetching Uniprot data...")
-    resUniprot = uniprot(filePath)
 
-    ### RESULTATS MODULE PDB
-    print("### Fetching PDB data...")
-    resPDB = pdb(resUniprot)
-
-    ### RESULTATS MODULE PFAM/InterPro
-    print("### Fetching Pfam data...")
-    resPfam = pfam(resUniprot)
-
-    ### RESULTATS MODULE PROSITE
-    print("### Fetching Prosite data...")
-    resProSite = prosite(resUniprot)
-
-    ### RESULTATS MODULE STRING
-    print("### Fetching STRING data...")
-    resString = network_link_string(resUniprot)
-
-    ### RESULTATS MODULE KEGG
-    print("### Fetching KEGG data...")
-    resKegg = kegg_data(resNcbi)
-
-    ### RESULTATS MODULE GENEONTOLOGY
-    print("### Fetching GeneOntology data...")
-    bioProcess, cellComponent, molFunction = info_gene_ontology(resUniprot)
+    tUniprot.join()
+    resUniprot = tUniprot.uniprot
+    resPDB = tUniprot.pdb
+    resPfam = tUniprot.pfam
+    resProSite = tUniprot.prosite
+    resString = tUniprot.string
+    bioProcess = tUniprot.bioprocess
+    cellComponent = tUniprot.cellcomponent
+    molFunction = tUniprot.molfunction
 
     ##################################################################
 
@@ -248,5 +389,6 @@ def table_generator(filePath:str) :
 
 </html>
                     """)
-
+start = time.time()
 table_generator(file)
+print(time.time()-start)

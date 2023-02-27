@@ -10,6 +10,9 @@ def kegg_data(resNcbi):
     - keggID -> ID KEGG du gène
     - keggInfoPathways -> dictionnaire retourné associant chaque clé (gène/organisme ) les IDs pathways 'pathID' et leurs noms correspondants 'pathName'
     """
+
+    print("### Fetching KEGG data...")
+
     infoPath = {}  #dictionnaire des IDs KEGG et noms et IDs des pathways
     
     for keys in resNcbi.keys():
@@ -48,6 +51,7 @@ def kegg_data(resNcbi):
                             infoPath[keys]['keggInfoPathways'].append({'pathID': pathID, 'pathName': path})
                     except:
                         continue
+    print("KEGG done")
     return infoPath
 
 

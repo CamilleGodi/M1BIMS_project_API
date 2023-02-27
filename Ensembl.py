@@ -28,6 +28,8 @@ def ensembl(filePath:str):
     > res = ensembl("filePath") ; res["A,orga1"]["ensGeneId"]
     """
 
+    print("### Fetching Ensembl data...")
+
     # création liste gène + espèce
     genesList = gene_dict_generator(filePath)
 
@@ -114,6 +116,7 @@ def ensembl(filePath:str):
                                             "ensOrthoList" : orthos,
                                             "ensUrlPrefix" : dbext}
             time.sleep(1) # 1 seconde de buffer pour pas se faire kick du serveur
+    print("Ensembl Done")
     return ensemblData
 
 ######################################################################

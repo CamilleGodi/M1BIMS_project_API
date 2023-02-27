@@ -19,6 +19,8 @@ def pdb(resUniprot):
     > res = pdb(filePath) ; res["A,orga1"]['pdbID']
     """
 
+    print("### Fetching PDB data...")
+
     # Data NCBI pour chaque gène
     pdbData = {}
 
@@ -43,7 +45,7 @@ def pdb(resUniprot):
 
         ### Infos pour le gène
         pdbData[keys] = {"pdbID" : ids}
-
+    print("PDB done")
     return(pdbData)
 
 ######################################################################

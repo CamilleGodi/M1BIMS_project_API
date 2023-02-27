@@ -15,6 +15,9 @@ def network_link_string(resUniprot):
     - StringID   -> dictionnaire retourné par la fonction et qui contient les identifiants STRING
 
     """
+
+    print("### Fetching STRING data...")
+
     infoString = {} #initialisation du dictionnaire
     
     for keys in resUniprot.keys():
@@ -59,7 +62,7 @@ def network_link_string(resUniprot):
                     # récupérations des liens vers le réseau d'interaction
                     #links = f"https://string-db.org/network/{string_identifier}"
                     #network_zoom = f"https://string-db.org/api/highres_image/network?identifiers={string_identifier}"
-                
+    print("STRING done")            
     return infoString
 
 #from Uniprot import uniprot

@@ -20,6 +20,9 @@ def info_gene_ontology(resUniprot):
     bioProcess, cellComponent, molFunction = info_gene_ontology(resUniprot)
     print(bioProcess["A,orga1"])
     """
+
+    print("### Fetching GeneOntology data...")
+
     bioProcess = {}
     molFunction = {}
     cellComponent = {}
@@ -78,6 +81,7 @@ def info_gene_ontology(resUniprot):
                 molFunction[keys]= listMFnoDuplicate
 
 #                   print(molFunction)
+    print("Gene Ontology done")
     return bioProcess, cellComponent, molFunction
 
 #from Uniprot import uniprot

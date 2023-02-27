@@ -27,6 +27,8 @@ def ncbi(filePath:str):
     > res = ncbi(filePath) ; res["A,orga1"]['ncbiGeneId']
     """
 
+    print("### Fetching NCBI data...")
+
     # création liste gène + espèce
     genesList = gene_dict_generator(filePath)
 
@@ -116,6 +118,7 @@ def ncbi(filePath:str):
                                 "ncbiTranscriptAccess" : listTranscriptAccess,
                                 "ncbiProteinAccess" : ncbiProteinAccess }
         #time.sleep(1) # 1 seconde de buffer pour pas se faire kick du serveur
+    print("NCBI done")
     return(ncbiData)
 
 ######################################################################

@@ -22,6 +22,8 @@ def pfam(resUniprot):
     > res = pfam(filePath) ; res["A,orga1"]['pfamID']
     """
 
+    print("### Fetching Pfam data...")
+
     # Data NCBI pour chaque gène
     pfamData = {}
 
@@ -45,7 +47,7 @@ def pfam(resUniprot):
 
         ### Infos pour le gène
         pfamData[keys] = {"pfamID": ids, "pfamLink": links}
-
+    print("Pfam done")
     return(pfamData)
 
 ######################################################################
