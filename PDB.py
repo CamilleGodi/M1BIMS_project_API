@@ -45,7 +45,7 @@ def pdb(resUniprot):
 
         ### Infos pour le gène
         pdbData[keys] = {"pdbID" : ids}
-    print("PDB done")
+
     return(pdbData)
 
 ######################################################################

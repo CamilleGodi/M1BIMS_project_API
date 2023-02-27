@@ -19,7 +19,6 @@ from STRING import network_link_string
 from KEGG import kegg_data
 from GeneOntology import info_gene_ontology
 
-import time
 ######################################################################
 
 ### INTERFACE
@@ -389,6 +388,5 @@ def table_generator(filePath:str) :
 
 </html>
                     """)
-start = time.time()
+
 table_generator(file)
-print(time.time()-start)

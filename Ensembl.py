@@ -116,7 +116,7 @@ def ensembl(filePath:str):
                                             "ensOrthoList" : orthos,
                                             "ensUrlPrefix" : dbext}
             time.sleep(1) # 1 seconde de buffer pour pas se faire kick du serveur
-    print("Ensembl Done")
+
     return ensemblData
 
 ######################################################################

@@ -118,7 +118,7 @@ def ncbi(filePath:str):
                                 "ncbiTranscriptAccess" : listTranscriptAccess,
                                 "ncbiProteinAccess" : ncbiProteinAccess }
         #time.sleep(1) # 1 seconde de buffer pour pas se faire kick du serveur
-    print("NCBI done")
+
     return(ncbiData)
 
 ######################################################################

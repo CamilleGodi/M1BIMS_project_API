@@ -46,7 +46,7 @@ def prosite(resUniprot):
 
         ### Infos pour le gène
         prositeData[keys] = {"prositeID": ids, "prositeLink": links}
-    print("Prosite done")
+
     return(prositeData)
 
 ######################################################################

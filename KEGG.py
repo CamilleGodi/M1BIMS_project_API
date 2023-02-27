@@ -51,7 +51,7 @@ def kegg_data(resNcbi):
                             infoPath[keys]['keggInfoPathways'].append({'pathID': pathID, 'pathName': path})
                     except:
                         continue
-    print("KEGG done")
+
     return infoPath
 
 

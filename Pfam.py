@@ -47,7 +47,7 @@ def pfam(resUniprot):
 
         ### Infos pour le gène
         pfamData[keys] = {"pfamID": ids, "pfamLink": links}
-    print("Pfam done")
+
     return(pfamData)
 
 ######################################################################
