@@ -321,7 +321,8 @@ def table_generator(filePath:str) :
             ### DONNEES PROSITE
             # Prosite ID
             outputHtml.write(f"""<td><div class="scroll">""")
-            outputHtml.write(f"<a href=https://prosite.expasy.org/cgi-bin/prosite/PSView.cgi?spac={resProSite[geneAndOrga]['prositeLink']}>[Protein Link]</a><br>")
+            for prositeLink in resProSite[geneAndOrga]['prositeLink']:
+                outputHtml.write(f"<a href={prositeLink}>[Protein Link]</a><br>")
             for i in range(len(resProSite[geneAndOrga]['prositeID'])):
                 outputHtml.write(f"<a href=https://prosite.expasy.org/{resProSite[geneAndOrga]['prositeID'][i]}>{resProSite[geneAndOrga]['prositeID'][i]}</a><br>")
             outputHtml.write(f"</div></td>\n")

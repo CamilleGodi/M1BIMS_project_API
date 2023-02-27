@@ -43,10 +43,14 @@ def pfam(resUniprot):
             except requests.exceptions.JSONDecodeError:
                 pass
             
+            # Elimination des duplicats
+            pfamIDsNoDupli = []
+            [pfamIDsNoDupli.append(x) for x in ids if x not in pfamIDsNoDupli]
+            
         #############################################################
 
         ### Infos pour le gène
-        pfamData[keys] = {"pfamID": ids, "pfamLink": links}
+        pfamData[keys] = {"pfamID": pfamIDsNoDupli, "pfamLink": links}
 
     return(pfamData)
 

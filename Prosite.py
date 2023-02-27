@@ -41,11 +41,14 @@ def prosite(resUniprot):
             except requests.exceptions.JSONDecodeError:
                 pass
 
+            # Elimination des duplicats
+            prositeIDsNoDupli = []
+            [prositeIDsNoDupli.append(x) for x in ids if x not in prositeIDsNoDupli]
 
         #############################################################
 
         ### Infos pour le gène
-        prositeData[keys] = {"prositeID": ids, "prositeLink": links}
+        prositeData[keys] = {"prositeID": prositeIDsNoDupli, "prositeLink": links}
 
     return(prositeData)
 
