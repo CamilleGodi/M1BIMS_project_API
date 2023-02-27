@@ -13,7 +13,7 @@ Script créant un tableau intéractif d'annotation de gènes depuis différentes
 ```python3 main.py```
 
 ## Format d'entrée:
-Ce script prends un fichier (par défaut  'GeneSymbols.txt' disponible dans le dossier) avec un gène par ligne, formatté comme suivant:
+Ce script prends un fichier .txt avec un gène par ligne, formatté comme suivant:
 > SYMBOLE,genre_espèce  
 > SYMBOLE2,genre_espèce2 
 

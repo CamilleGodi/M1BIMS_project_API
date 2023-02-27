@@ -58,12 +58,16 @@ def uniprot(filePath:str):
             except KeyError:
                 names.append(id["proteinDescription"]["submissionNames"][0]["fullName"]["value"])
 
+        # Elimination des duplicats
+        uniNamesnoDuplicate = []
+        [uniNamesnoDuplicate.append(x) for x in names if x not in uniNamesnoDuplicate]
+
         #############################################################
 
         ### Infos pour le gène
 
         uniprotData[geneAndOrga] = {"uniprotID" : ids,
-                                "uniprotName" : names
+                                "uniprotName" : uniNamesnoDuplicate
                                 }
 
         #############################################################

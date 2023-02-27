@@ -29,7 +29,8 @@ filePath = fd.askopenfilename(title="Open your file (format : 'geneSymbol,Organi
 # Par défaut, si pas de fichier donné dans l'interface
 if filePath == () :
     file = "GeneSymbols.txt" # fichier par défaut
-    print("Default file used (GeneSymbols.txt)")
+    print("please input a file")
+    quit()
 else :
     file = filePath
     print("file : ", file)
@@ -285,10 +286,16 @@ def table_generator(filePath:str) :
 
             ### DONNEES UniProt
             # Prot name
-            outputHtml.write(f"<td>{resUniprot[geneAndOrga]['uniprotName']}</td>\n")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            for uniprotName in resUniprot[geneAndOrga]['uniprotName']:
+                outputHtml.write(f"{uniprotName}<br>")
+            outputHtml.write(f"</div></td>\n")
 
             # Prot ID
-            outputHtml.write(f"<td>{resUniprot[geneAndOrga]['uniprotID']}</td>\n")
+            outputHtml.write(f"""<td><div class="scroll">""")
+            for uniprotID in resUniprot[geneAndOrga]['uniprotID']:
+                outputHtml.write(f"{uniprotID}<br>")
+            outputHtml.write(f"</div></td>\n")
 
 
             ### DONNEES PDB
